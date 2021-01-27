@@ -1,68 +1,61 @@
 import React, { Component } from 'react'
-import {Control,LocalForm,Errors} from 'react-redux-form'
+import {Control,LocalForm} from 'react-redux-form'
+import { connect } from 'react-redux';
+import {signup} from '../redux/actions/actioncreators'
+import {Alert} from 'reactstrap'
 
-
-const required = (val) => val && val.length;
-const maxLength = (len) => (val) => !(val) || (val.length <= len);
-const minLength = (len) => (val) => val && (val.length >= len);
-const isNumber = (val) => !isNaN(Number(val));
-const validEmail = (val) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
-
-export default class Sign extends Component {
+const mapStateToProps = (state) => ({
+    isAuthenticated:state.auth.isAuthenticated,
+    error:state.errors
+})
+class Sign extends Component {
     constructor(props){
         super(props);
         this.handlesignin=this.handlesignin.bind(this)
+        this.state={
+          msg:null
+        }
     }
     handlesignin(values){
-      alert(JSON.stringify(values));
-}
-
+      let {username,email,password,confirmpassword} = values;
+      this.props.signup({username,email,password,confirmpassword}) 
+    }
+    componentDidUpdate(prevProps){
+      let {error,isAuthenticated} = this.props
+      if(isAuthenticated){
+        return this.props.history.push('/land')
+     }
+      if(error!=prevProps.error){
+        if(error.id==="SIGN_UP_FAIL"){
+        this.setState({msg:error.msg.msg})
+        }else{
+          this.setState({msg:null})
+        }
+      }
+    }
     render() {
         return (
-            <div id='sign'>
-              <h4 className="sign-title">Sign In</h4>
-                <LocalForm className='container-fluid' onSubmit={(values) => this.handlesignin(values)}>
+                <div id='sign'>
+                    <h4 className="sign-title">Sign In</h4>
+                    
+                    <LocalForm className='container-fluid' onSubmit={(values) => this.handlesignin(values)} >
+                    <span className='alertmessage'>{this.state.msg ? (<span>{this.state.msg}</span>):null}</span>
                       <div className = 'form-group row'>
-                        
-                        <Control.text id='Username' model='.Username' placeholder='Username'
-                        validators={{
-                          required,minLength:minLength(5),maxLength:maxLength(15)
-                        }} />
-                        <Errors
-                             className="text-danger"
-                             model=".Username"
-                             show="touched"
-                             messages={{
-                                        required: 'Required',
-                                        minLength: 'Must be greater than 4 characters',
-                                        maxLength: 'Must be 15 characters or less'
-                                      }}
-                        />
+                        <Control.text id='username' model='.username' placeholder='Username'/>
                       </div>
-
-                      <div className = 'form-group row'>
-                        
-                        <Control.text id='email' model='.email' placeholder="Email"
-                        validators={{
-                          required,validEmail
-                        }}  />
-                        
+                      <div className = 'form-group row'>                        
+                        <Control.text id='email' model='.email' placeholder="Email"/>
                       </div>
-
                       <div className = 'form-group row'>
-                  
-                        <Control.text id='Password' model='.Password' placeholder="Passsword"  />
+                        <Control.password id='password' model='.password' placeholder="Passsword"  />
                       </div>
-  
                       <div className = 'form-group row'>
-                        <Control.select model=".user" id="user">
-                          <option value="Student">Student</option>
-                          <option value="Faculty">Faculty</option>
-                        </Control.select>
-                      </div> 
-                      <button className='sign-but'  >Sign In</button>
-                </LocalForm>
-            </div>
+                        <Control.password id='confirmpassword' model='.confirmpassword' placeholder="confirm-password" />
+                      </div>
+                      <button className='sign-but' >Sign In</button>
+                   </LocalForm> 
+                </div>
         )
     }
 }
+export default  connect(mapStateToProps,{signup})(Sign)

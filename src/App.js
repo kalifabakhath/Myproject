@@ -1,18 +1,27 @@
-import React from 'react';
+import React,{Component} from 'react';
 import {BrowserRouter} from 'react-router-dom';
-import { Provider } from 'react-redux';
+import {Provider} from 'react-redux';
 import Main from './components/main';
-import {Configstore} from './redux/configurestore'
+import {store} from './redux/configurestore';
+import {loaduser} from './redux/actions/actioncreators';
+//import { PersistGate } from 'redux-persist/integration/react';
 
-const store = Configstore()
-function App() {
-  return (
-    <Provider store={store} >
-      <BrowserRouter>     
-        <Main />
-     </BrowserRouter>
-    </Provider>
-  );
+class App extends Component {
+componentDidMount(){
+ store.dispatch(loaduser());
+
 }
 
-export default App;
+render(){
+  return (
+    <Provider store={store} >
+      
+        <BrowserRouter>     
+          <Main/>
+        </BrowserRouter>
+     
+    </Provider> 
+  );
+}}
+
+export default App 
