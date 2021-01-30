@@ -2,7 +2,7 @@
   "name": "SGSS",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://kalifabakhath.github.io/students-grievances-portal/src/",
+  "homepage": "https://kalifabakhath.github.io/students-grievances-portal/public/",
   "dependencies": {
     "body-parser": "^1.18.3",
     "bootstrap": "^4.4.1",
