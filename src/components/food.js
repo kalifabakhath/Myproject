@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from "react-redux";
-import {Addfood} from "../redux/actions/foodaction"
+//import {Addfood} from "../redux/actions/foodaction"
 import {Control,LocalForm} from 'react-redux-form';
 import {Label,Row,Col} from 'reactstrap';
 
@@ -20,7 +20,7 @@ class Food extends Component {
     formdata.append('foodplace',values.foodplace);
     formdata.append('description',values.description);
     formdata.append('image',values.image[0]);
-    this.props.Addfood(formdata);
+    //this.props.Addfood(formdata);
   }
 
   render() {
@@ -67,4 +67,4 @@ class Food extends Component {
 }
 }
 
-export default connect(mapStatetoProps,{Addfood})(Food)
+export default /*connect(mapStatetoProps,{Addfood})*/(Food)

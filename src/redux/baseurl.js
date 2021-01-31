@@ -1,1 +1,0 @@
-export const url = "https://kalifabakhath.github.io/students-grievances-portal/public";

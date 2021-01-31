@@ -2,10 +2,10 @@ import React from 'react';
 import {logout} from '../redux/actions/actioncreators'
 import { Button } from 'reactstrap';
 import {withRouter} from 'react-router-dom';
-import {connect} from 'react-redux'
+//import {connect} from 'react-redux'
 function Logout(props){
      let handlelogout=()=>{
-         props.logout();
+        // props.logout();
          props.history.push('/land')
        }
       return(
@@ -13,4 +13,4 @@ function Logout(props){
       )
 }
 
-export default withRouter(connect(null,{logout})(Logout))
+export default withRouter(/*connect(null,{logout})*/(Logout))

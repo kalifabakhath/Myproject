@@ -9,7 +9,7 @@ import Mycomplaints from './mycomplaints';
 import Food from './food';
 import Admin from './admin';
 import Foodadmin from './adminfood'
-import { connect } from 'react-redux';
+/*import { connect } from 'react-redux';
 
 const mapStateToProps = (state) => {
     return {
@@ -17,12 +17,12 @@ const mapStateToProps = (state) => {
         role:state.auth.user
     }
  }
- 
+ */
 class Main extends Component {
 
     render() {
                 
-        const PrivateRoute = ({ component: Component, ...rest }) => (
+       /* const PrivateRoute = ({ component: Component, ...rest }) => (
             <Route {...rest} render={(props) => (
               this.props.isAuthenticated && this.props.role.role === 'student'
                 ? <Component {...props} />
@@ -48,7 +48,7 @@ class Main extends Component {
                     state: { from: props.location }
                   }} />
             )} />
-          );
+          );*/
           
         return (
             <div>
@@ -57,11 +57,11 @@ class Main extends Component {
                     <Route path='/land' component={Land}/>
                     <Route exact path='/login' component={Login} />     
                     <Route exact path='/signup' component={Sign} />
-                    <PrivateRoute exact path='/studentscorner' component={Scorner}/>
-                    <PrivateRoute exact path="/studentscorner/food" component={Food}/>
-                    <MycomplaintsPrivateRoute exact path="/studentscorner/mycomplaints" component={Mycomplaints}/>
-                    <FoodAdminPrivateRoute exact path='/admin' component={Admin}/>
-                    <FoodAdminPrivateRoute exact path='/admin/food' component={Foodadmin}/> 
+                    <Route exact path='/studentscorner' component={Scorner}/>
+                    <Route exact path="/studentscorner/food" component={Food}/>
+                    <Route exact path="/studentscorner/mycomplaints" component={Mycomplaints}/>
+                    <Route exact path='/admin' component={Admin}/>
+                    <Route exact path='/admin/food' component={Foodadmin}/> 
                     <Redirect to='/land'/>                  
                 </Switch>
                 
@@ -71,5 +71,5 @@ class Main extends Component {
 }
 
 
-export default connect(mapStateToProps)(Main)
+export default /*connect(mapStateToProps)*/(Main)
 

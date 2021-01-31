@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import {Control,LocalForm} from 'react-redux-form'
-import { connect } from 'react-redux';
-import {signup} from '../redux/actions/actioncreators'
+//import { connect } from 'react-redux';
+//import {signup} from '../redux/actions/actioncreators'
 import {Alert} from 'reactstrap'
 
-const mapStateToProps = (state) => ({
+/*const mapStateToProps = (state) => ({
     isAuthenticated:state.auth.isAuthenticated,
     error:state.errors
-})
+})*/
 class Sign extends Component {
     constructor(props){
         super(props);
@@ -18,9 +18,9 @@ class Sign extends Component {
     }
     handlesignin(values){
       let {username,email,password,confirmpassword} = values;
-      this.props.signup({username,email,password,confirmpassword}) 
+     // this.props.signup({username,email,password,confirmpassword}) 
     }
-    componentDidUpdate(prevProps){
+    /*componentDidUpdate(prevProps){
       let {error,isAuthenticated} = this.props
       if(isAuthenticated){
         return this.props.history.push('/land')
@@ -32,7 +32,7 @@ class Sign extends Component {
           this.setState({msg:null})
         }
       }
-    }
+    }*/
     render() {
         return (
                 <div id='sign'>
@@ -58,4 +58,4 @@ class Sign extends Component {
         )
     }
 }
-export default  connect(mapStateToProps,{signup})(Sign)
+export default  /*connect(mapStateToProps,{signup})*/(Sign)

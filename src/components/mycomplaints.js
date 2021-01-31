@@ -1,21 +1,30 @@
 import React, { Component } from 'react';
 import {Card,CardBody,CardHeader,CardText,Button,ListGroup,CardFooter} from 'reactstrap';
-import {connect} from 'react-redux';
+//import {connect} from 'react-redux';
 import {  Fade, Stagger } from 'react-animation-components';
-import {store} from '../redux/configurestore';
-import {Getfood} from '../redux/actions/foodaction';
-const mapStateToProps = (state) => ({
+//import {store} from '../redux/configurestore';
+//import {Getfood} from '../redux/actions/foodaction';
+/*const mapStateToProps = (state) => ({
     user:state.auth.user,
     Complaints:state.food.complaints
-})
+})*/
 class Mycomplaints  extends Component {
     
-    componentDidMount(){
+   /* componentDidMount(){
         store.dispatch(Getfood());
-       }
+       }*/
     render() { 
-        let complaints = this.props.Complaints;
-        let Email = this.props.user.email;
+        //let complaints = this.props.Complaints;
+        //let Email = this.props.user.email;
+        let complaints = [
+            {
+                "_id":1234,
+                "email":"abc@gmail.com",
+                "foodplace":"Canteen",
+                "description":"Looks expired ingredients",
+                "date":"23/12/2020"
+            }
+        ]
         let cardStyle = {
             margin:'5px',
             border:"solid 2px",
@@ -28,7 +37,7 @@ class Mycomplaints  extends Component {
                     <ListGroup>
                         {
                             complaints.map((complaint)=>{
-                                if(complaint.email === Email){
+                                
                                 return (
                                     <Fade in key={complaint._id}>
                                        
@@ -46,7 +55,7 @@ class Mycomplaints  extends Component {
                                         </Card>
                                        
                                     </Fade>
-                                )}
+                                )
                             })
                         }
                     </ListGroup>
@@ -56,4 +65,4 @@ class Mycomplaints  extends Component {
     }
 }
  
-export default connect(mapStateToProps,null)(Mycomplaints);
+export default /*connect(mapStateToProps,null)*/(Mycomplaints);

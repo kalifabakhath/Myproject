@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import {Navbar,NavbarBrand,Button,ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem} from 'reactstrap';
 import { withRouter,Link} from 'react-router-dom'
-import { connect } from 'react-redux';
-import {logout} from '../redux/actions/actioncreators'
+//import { connect } from 'react-redux';
+//import {logout} from '../redux/actions/actioncreators'
 
 const mapStateToProps = (state) => ({
     isAuthenticated:state.auth.isAuthenticated,
@@ -26,7 +26,7 @@ const mapStateToProps = (state) => ({
     }
     
     handlelogout=()=>{
-      this.props.logout();
+      //this.props.logout();
       this.props.history.push('/land')
     }
     render() {
@@ -35,8 +35,8 @@ const mapStateToProps = (state) => ({
             <div className="head">
             <Navbar color="black" light>
               <NavbarBrand style={sgss}href="/" className="mr-auto homenav">SAPP</NavbarBrand>
-              {this.props.isAuthenticated ?
-              this.props.user.role=="Foodadmin"?(
+              {/*this.props.isAuthenticated*/ true ?
+              /*this.props.user.role=="Foodadmin"*/ false?(
                 <ButtonDropdown isOpen={this.state.isopen} toggle={this.togglenav}>
                 <Button id="caret" color="primary">{this.props.user.username.toUpperCase()}</Button>
                 <DropdownToggle caret color="primary" />
@@ -46,7 +46,7 @@ const mapStateToProps = (state) => ({
               </ButtonDropdown>
               ):(
                 <ButtonDropdown isOpen={this.state.isopen} toggle={this.togglenav}>
-                  <Button id="caret" color="primary">{this.props.user.username.toUpperCase()}</Button>
+                  <Button id="caret" color="primary">{/*{this.props.user.username.toUpperCase()}*/}User1</Button>
                   <DropdownToggle caret color="primary" />
                   <DropdownMenu>
                   <DropdownItem ><Link to='/studentscorner/mycomplaints'>mycomplaints</Link></DropdownItem>
@@ -65,4 +65,4 @@ const mapStateToProps = (state) => ({
     }
 }
 
-export default withRouter(connect(mapStateToProps,{logout})(Header))
+export default withRouter(/*connect(mapStateToProps,{logout})*/Header);
